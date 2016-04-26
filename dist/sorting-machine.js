@@ -34,36 +34,43 @@ var SortingMachine = function () {
     }
   }, {
     key: 'sort',
-    value: function sort(coins) {
+    value: function sort() {
       var _this = this;
 
-      if (!coins.length) {
+      console.log(this.coins.length, ' coins left');
+      console.log(this.nonCoins.length, ' are invalid');
+      if (!this.coins.length) {
         // pass to count machine or display results
-        console.log('Sorting complete.');
+        console.log('Sorting complete:');
         for (var property in this) {
-          console.log('There are ' + property.length + ' ' + property);
+          console.log('* ' + this[property].length + ' ' + property);
         }
         return;
       }
       setTimeout(function () {
         // removes one coin from parameter and run it through the sorting process.
-        var coin = coins.shift();
+        var coin = _this.coins.shift();
+        var checked = 0;
         console.log('sorting coin: ' + coin.weight);
         for (var coinType in _coinSpecs.coinSpecs) {
-          if (coin.diameter === _coinSpecs.coinSpecs[coinType].diameter && coin.weight === _coinSpecs.coinSpecs[coinType].weight && _this.vagueCheck(coin.weight, _coinSpecs.coinSpecs[coinType].weight)) {
+          if (coin.diameter === _coinSpecs.coinSpecs[coinType].diameter && coin.thickness === _coinSpecs.coinSpecs[coinType].thickness && _this.vagueCheck(coin.weight, _coinSpecs.coinSpecs[coinType].weight)) {
             console.log('this is a ' + coinType);
             _this[coinType + 's'].push(coin);
+            continue;
           } else {
-            _this.nonCoins.push(coin);
+            checked++;
+            if (checked === 5) {
+              _this.nonCoins.push(coin);
+            }
           }
         }
-        _this.sort(coins);
-      }, 500);
+        _this.sort();
+      }, 50);
     }
   }, {
     key: 'startSort',
     value: function startSort() {
-      this.sort(this.coins);
+      this.sort();
     }
     // simulates property change on old coin that had picked up dirt and oil
 

@@ -15,34 +15,41 @@ class SortingMachine {
     this.coins = this.coins.concat(...coins);
   }
 
-  sort(coins) {
-    if(!coins.length) {
+  sort() {
+    console.log(this.coins.length, ' coins left');
+    console.log(this.nonCoins.length, ' are invalid');
+    if(!this.coins.length) {
       // pass to count machine or display results
-      console.log('Sorting complete.');
+      console.log('Sorting complete:');
       for (var property in this) {
-        console.log(`There are ${property.length} ${property}`);
+        console.log(`* ${this[property].length} ${property}`);
       }
       return;
     }
     setTimeout(() => {
       // removes one coin from parameter and run it through the sorting process.
-      let coin = coins.shift();
+      let coin = this.coins.shift();
+      let checked = 0;
       console.log('sorting coin: ' + coin.weight);
       for (var coinType in coinSpecs) {
         if (coin.diameter === coinSpecs[coinType].diameter &&
-            coin.weight === coinSpecs[coinType].weight &&
+            coin.thickness === coinSpecs[coinType].thickness &&
             this.vagueCheck(coin.weight, coinSpecs[coinType].weight)) {
               console.log('this is a ' + coinType);
               this[coinType + 's'].push(coin);
+              continue;
         } else {
-          this.nonCoins.push(coin);
-        }
+            checked ++;
+            if (checked === 5) {
+              this.nonCoins.push(coin);
+            }
+          }
       }
-      this.sort(coins);
-    }, 500);
+      this.sort();
+    }, 50);
   }
   startSort() {
-    this.sort(this.coins);
+    this.sort();
   }
   // simulates property change on old coin that had picked up dirt and oil
   vagueCheck(actualProperty, expectedProperty) {

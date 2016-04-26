@@ -1,4 +1,3 @@
-import { random } from 'lodash';
 import { Coin } from './coin.js';
 
 class CoinFactory {
