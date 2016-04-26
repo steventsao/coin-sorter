@@ -39,24 +39,26 @@ var SortingMachine = function () {
 
       if (!coins.length) {
         // pass to count machine or display results
-        console.log('Sorting complete.', this);
+        console.log('Sorting complete.');
+        for (var property in this) {
+          console.log('There are ' + property.length + ' ' + property);
+        }
         return;
       }
       setTimeout(function () {
         // removes one coin from parameter and run it through the sorting process.
         var coin = coins.shift();
-        console.log('sorting coin: ' + coin.diameter);
+        console.log('sorting coin: ' + coin.weight);
         for (var coinType in _coinSpecs.coinSpecs) {
           if (coin.diameter === _coinSpecs.coinSpecs[coinType].diameter && coin.weight === _coinSpecs.coinSpecs[coinType].weight && _this.vagueCheck(coin.weight, _coinSpecs.coinSpecs[coinType].weight)) {
             console.log('this is a ' + coinType);
             _this[coinType + 's'].push(coin);
           } else {
-            console.log('not a ' + coinType + '...');
             _this.nonCoins.push(coin);
           }
         }
         _this.sort(coins);
-      }, 1000);
+      }, 500);
     }
   }, {
     key: 'startSort',
@@ -68,7 +70,7 @@ var SortingMachine = function () {
   }, {
     key: 'vagueCheck',
     value: function vagueCheck(actualProperty, expectedProperty) {
-      if (actualProperty < expectedProperty * 1.03 && actualProperty > expectedProperty * 0.97) {
+      if (actualProperty <= expectedProperty * 1.03 && actualProperty >= expectedProperty * 0.97) {
         return true;
       } else {
         return false;

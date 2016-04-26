@@ -11,7 +11,6 @@ var _coinFactory2 = _interopRequireDefault(_coinFactory);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var machine = new _sortingMachine2.default({});
-// console.log(machine.coins);
 var factory = new _coinFactory2.default();
 var coins = factory.makeCoins();
 machine.addCoins(coins);

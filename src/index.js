@@ -2,7 +2,6 @@ import SortingMachine from './sorting-machine.js';
 import CoinFactory from './coin-factory.js';
 
 let machine = new SortingMachine({});
-// console.log(machine.coins);
 let factory = new CoinFactory();
 let coins = factory.makeCoins();
 machine.addCoins(coins);

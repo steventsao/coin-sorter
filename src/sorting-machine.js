@@ -18,13 +18,16 @@ class SortingMachine {
   sort(coins) {
     if(!coins.length) {
       // pass to count machine or display results
-      console.log('Sorting complete.', this);
+      console.log('Sorting complete.');
+      for (var property in this) {
+        console.log(`There are ${property.length} ${property}`);
+      }
       return;
     }
     setTimeout(() => {
       // removes one coin from parameter and run it through the sorting process.
       let coin = coins.shift();
-      console.log('sorting coin: ' + coin.diameter);
+      console.log('sorting coin: ' + coin.weight);
       for (var coinType in coinSpecs) {
         if (coin.diameter === coinSpecs[coinType].diameter &&
             coin.weight === coinSpecs[coinType].weight &&
@@ -32,20 +35,19 @@ class SortingMachine {
               console.log('this is a ' + coinType);
               this[coinType + 's'].push(coin);
         } else {
-          console.log(`not a ${coinType}...`);
           this.nonCoins.push(coin);
         }
       }
       this.sort(coins);
-    }, 1000);
+    }, 500);
   }
   startSort() {
     this.sort(this.coins);
   }
   // simulates property change on old coin that had picked up dirt and oil
   vagueCheck(actualProperty, expectedProperty) {
-    if (actualProperty < expectedProperty * 1.03 &&
-        actualProperty > expectedProperty * 0.97) {
+    if (actualProperty <= expectedProperty * 1.03 &&
+        actualProperty >= expectedProperty * 0.97) {
           return true;
     } else {
       return false;
