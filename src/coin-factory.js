@@ -1,4 +1,6 @@
-import { Coin } from './coin.js';
+import {
+  Coin
+} from './coin.js';
 
 class CoinFactory {
   makeCoins(number = 100) {
@@ -12,7 +14,5 @@ class CoinFactory {
     return coins;
   }
 }
-
-
 
 export default CoinFactory;

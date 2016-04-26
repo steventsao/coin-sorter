@@ -1,5 +1,10 @@
-import { sample } from 'lodash';
-import { coinSpecs } from './coin-specs.js';
+import {
+  sample
+} from 'lodash';
+import {
+  coinSpecs
+} from './coin-specs.js';
+
 class Coin {
   constructor(properties) {
     var type = sample(Object.keys(coinSpecs));
@@ -16,4 +21,6 @@ class Coin {
 
 // Coin specs
 // https://www.usmint.gov/about_the_mint/?action=coin_specifications
-export { Coin };
+export {
+  Coin
+};

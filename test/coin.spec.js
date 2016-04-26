@@ -1,7 +1,13 @@
-import { Coin } from '../src/coin.js';
-import { coinSpecs } from '../src/coin-specs.js';
+import {
+  Coin
+} from '../src/coin.js';
+import {
+  coinSpecs
+} from '../src/coin-specs.js';
 import expect from 'expect';
-import { values } from 'lodash';
+import {
+  values
+} from 'lodash';
 
 describe('Coin', () => {
   it('should have three properties', () => {

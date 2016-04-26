@@ -26,4 +26,6 @@ let coinSpecs = {
   }
 };
 
-export { coinSpecs };
+export {
+  coinSpecs
+};

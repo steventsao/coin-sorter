@@ -1,5 +1,9 @@
-import { coinSpecs } from './coin-specs.js';
-import { omit } from 'lodash';
+import {
+  coinSpecs
+} from './coin-specs.js';
+import {
+  omit
+} from 'lodash';
 
 class SortingMachine {
   constructor(properties) {
@@ -19,7 +23,7 @@ class SortingMachine {
   sort(cb) {
     console.log(this.coins.length, ' coins left');
     console.log(this.nonCoins.length, ' are invalid');
-    if(!this.coins.length) {
+    if (!this.coins.length) {
       // pass to count machine or display results
       console.log('Sorting complete:');
       for (var property in this) {
@@ -35,37 +39,35 @@ class SortingMachine {
       console.log('sorting coin: ' + coin.weight);
       for (var coinType in coinSpecs) {
         if (coin.diameter === coinSpecs[coinType].diameter &&
-            coin.thickness === coinSpecs[coinType].thickness &&
-            this.vagueCheck(coin.weight, coinSpecs[coinType].weight)) {
-              console.log('this is a ' + coinType);
-              this[coinType + 's'].push(coin);
-              continue;
+          coin.thickness === coinSpecs[coinType].thickness &&
+          this.vagueCheck(coin.weight, coinSpecs[coinType].weight)) {
+          console.log('this is a ' + coinType);
+          this[coinType + 's'].push(coin);
+          continue;
         } else {
-            checked ++;
-            if (checked === 5) {
-              this.nonCoins.push(coin);
-            }
+          checked++;
+          if (checked === 5) {
+            this.nonCoins.push(coin);
           }
+        }
       }
       this.sort(cb);
     }, 50);
   }
   startSort() {
-    return new Promise((resolve, reject) => {
-      this.sort(resolve);
-    });
-  }
-  // simulates property change on old coin that had picked up dirt and oil
+      return new Promise((resolve, reject) => {
+        this.sort(resolve);
+      });
+    }
+    // simulates property change on old coin that had picked up dirt and oil
   vagueCheck(actualProperty, expectedProperty) {
     if (actualProperty <= expectedProperty * 1.03 &&
-        actualProperty >= expectedProperty * 0.97) {
-          return true;
+      actualProperty >= expectedProperty * 0.97) {
+      return true;
     } else {
       return false;
     }
   }
 }
-
-
 
 export default SortingMachine;
