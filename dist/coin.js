@@ -34,7 +34,7 @@ var Coin = function () {
   return Coin;
 }();
 
-exports.Coin = Coin;
-
 // Coin specs
 // https://www.usmint.gov/about_the_mint/?action=coin_specifications
+
+exports.Coin = Coin;
