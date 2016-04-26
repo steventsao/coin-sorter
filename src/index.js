@@ -1,7 +1,11 @@
 import SortingMachine from './sorting-machine.js';
+import CoinFactory from './coin-factory.js';
 
-let machine = new SortingMachine([1,2,3]);
+let machine = new SortingMachine({});
 // console.log(machine.coins);
+let factory = new CoinFactory();
+let coins = factory.makeCoins();
+machine.addCoins(coins);
 machine.startSort();
 
 // Choose a diagram format you believe best conveys the logic and behavior of the system.

@@ -12,28 +12,28 @@ var _coin = require('./coin.js');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var coinFactory = function () {
-  function coinFactory(coins) {
-    _classCallCheck(this, coinFactory);
-
-    this.coins = coins || [];
+var CoinFactory = function () {
+  function CoinFactory() {
+    _classCallCheck(this, CoinFactory);
   }
 
-  _createClass(coinFactory, [{
+  _createClass(CoinFactory, [{
     key: 'makeCoins',
     value: function makeCoins() {
       var number = arguments.length <= 0 || arguments[0] === undefined ? 100 : arguments[0];
 
       var count = 0;
+      var coins = [];
       while (count < 100) {
         count++;
-        var coin = new _coin.Coin();
-        this.coins.push(coin);
+        var coin = new _coin.Coin({});
+        coins.push(coin);
       }
+      return coins;
     }
   }]);
 
-  return coinFactory;
+  return CoinFactory;
 }();
 
-exports.default = coinFactory;
+exports.default = CoinFactory;
