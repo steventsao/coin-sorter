@@ -14,7 +14,7 @@
 There are several inconveniences intentionally designed to simulate the process chain:
 + The 50 ms process time for each coin in `sorting-machine`.
 + Having a counter mechanism rather than using `Array.prototype.length` to get coin count per type.
-+ Having functions `vagueCheck` in `sorting-machine.js` and `vary` in `coin.js` to simulate the weight of a coin after long usage.
++ Having functions `vagueCheck` in `sorting-machine.js` and `vary` in `coin.js` to simulate the weight variation of a coin after long usage.
 
 ### Running ###
 `npm install`
