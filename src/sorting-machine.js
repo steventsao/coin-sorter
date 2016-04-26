@@ -1,4 +1,5 @@
 import { coinSpecs } from './coin-specs.js';
+import { omit } from 'lodash';
 
 class SortingMachine {
   constructor(properties) {
@@ -15,7 +16,7 @@ class SortingMachine {
     this.coins = this.coins.concat(...coins);
   }
 
-  sort() {
+  sort(cb) {
     console.log(this.coins.length, ' coins left');
     console.log(this.nonCoins.length, ' are invalid');
     if(!this.coins.length) {
@@ -24,6 +25,7 @@ class SortingMachine {
       for (var property in this) {
         console.log(`* ${this[property].length} ${property}`);
       }
+      cb(omit(this, ['coins']));
       return;
     }
     setTimeout(() => {
@@ -45,11 +47,13 @@ class SortingMachine {
             }
           }
       }
-      this.sort();
+      this.sort(cb);
     }, 50);
   }
   startSort() {
-    this.sort();
+    return new Promise((resolve, reject) => {
+      this.sort(resolve);
+    });
   }
   // simulates property change on old coin that had picked up dirt and oil
   vagueCheck(actualProperty, expectedProperty) {

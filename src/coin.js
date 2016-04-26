@@ -14,9 +14,6 @@ class Coin {
   }
 }
 
-export { Coin };
-
-
-
 // Coin specs
 // https://www.usmint.gov/about_the_mint/?action=coin_specifications
+export { Coin };

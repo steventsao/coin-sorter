@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _coinSpecs = require('./coin-specs.js');
 
+var _lodash = require('lodash');
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -34,7 +36,7 @@ var SortingMachine = function () {
     }
   }, {
     key: 'sort',
-    value: function sort() {
+    value: function sort(cb) {
       var _this = this;
 
       console.log(this.coins.length, ' coins left');
@@ -45,6 +47,7 @@ var SortingMachine = function () {
         for (var property in this) {
           console.log('* ' + this[property].length + ' ' + property);
         }
+        cb((0, _lodash.omit)(this, ['coins']));
         return;
       }
       setTimeout(function () {
@@ -64,13 +67,17 @@ var SortingMachine = function () {
             }
           }
         }
-        _this.sort();
+        _this.sort(cb);
       }, 50);
     }
   }, {
     key: 'startSort',
     value: function startSort() {
-      this.sort();
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this2.sort(resolve);
+      });
     }
     // simulates property change on old coin that had picked up dirt and oil
 
