@@ -11,7 +11,7 @@
 + The sorted coins are passed to `counter.js` that increments after removing a coin from the input.
 + The modules are assembled in `./src/index.js`.
 
-There are several inconveniences intentionally designed to simulate the process chain:
+There are several indirectness intentionally designed to simulate the process chain:
 + The 50 ms process time for each coin in `sorting-machine`.
 + Having a counter mechanism rather than using `Array.prototype.length` to get coin count per type.
 + Having functions `vagueCheck` in `sorting-machine.js` and `vary` in `coin.js` to simulate the weight variation of a coin after long usage.
